@@ -54,10 +54,9 @@ class TeamController extends Controller
                     ->findBy(array('playerTeamId' => null));
 
         $arrParams = array(
-            'team_name' => $team->getTeamName(),
-            'team_assisted' => $team->getTeamAssisted(),
-            'is_assisted' => $team->getTeamAssisted(),
-            'nPlayers' => $arrTeamPlayers->count(),
+            'team' => $team,
+            'add_players' => true,
+            'remove_players' => false,
             'arrPlayers' => $arrPlayers,
             'ajax_url' => $this->generateUrl('team_add_player',array('team_id'=>$team->getId(),'player_id'=>'PPPP'))
         );
@@ -90,7 +89,7 @@ class TeamController extends Controller
             }
         } else {
             $obj['error'] = 2;
-            $obj['message'] = "Cannot add more players, team has teached 5";
+            $obj['message'] = "Cannot add more players, team has reached 5 players";
         }
 
         $arrTeamPlayers = $team->getTeamPlayers();
@@ -102,5 +101,71 @@ class TeamController extends Controller
         );
 
         return $this->render('DecisionBundle:Team:team.json.html.twig', $arrParams); 
+    }
+
+    public function listTeamsAction(Request $request) {
+        $arrTeams = $this->getDoctrine()
+                    ->getRepository('DecisionBundle:Team')->findAll();
+
+        $arrParams = array(
+            'arrTeams' => $arrTeams
+        );
+        return $this->render('DecisionBundle:Team:team.list.html.twig', $arrParams);
+    }
+
+    public function listPlayersAction(Request $request, $team_id) {
+        $team = $this->getDoctrine()
+                    ->getRepository('DecisionBundle:Team')
+                    ->find($team_id);
+
+        $arrTeamPlayers = $team->getTeamPlayers();
+
+        $arrPlayers = $this->getDoctrine()
+                    ->getRepository('DecisionBundle:Player')
+                    ->findBy(array('playerTeamId' => null));
+
+        $arrParams = array(
+            'team' => $team,
+            'add_players' => false,
+            'remove_players' => true,
+            'arrPlayers' => $arrTeamPlayers,
+            'ajax_url' => $this->generateUrl('team_remove_player',array('team_id'=>$team->getId(),'player_id'=>'PPPP'))
+        );
+        return $this->render('DecisionBundle:Team:team.players.html.twig', $arrParams);  
+    }
+
+    public function removePlayerAction(Request $request, $team_id, $player_id) {
+        $team = $this->getDoctrine()
+                    ->getRepository('DecisionBundle:Team')
+                    ->find($team_id);
+        $player = $this->getDoctrine()
+                    ->getRepository('DecisionBundle:Player')
+                    ->find($player_id);
+
+        $arrTeamPlayers = $team->getTeamPlayers();
+        $obj = array();
+            try {
+                $team->removeTeamPlayer($player);
+                $player->setPlayerTeamId(null);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($team);
+                $em->persist($player);
+                $em->flush();
+                $obj['error'] = 0;
+                $obj['message'] = 'Player has been removed!';
+            } catch (Exception $ex) {
+                $obj['error'] = 1;
+                $obj['message'] = $ex->getMessage();
+            }
+
+        $arrTeamPlayers = $team->getTeamPlayers();
+        $obj['players'] = $arrTeamPlayers->count();
+        $strJSON = json_encode($obj);
+
+        $arrParams=array(
+            'json' => $strJSON
+        );
+
+        return $this->render('DecisionBundle:Team:team.json.html.twig', $arrParams);
     }
 }

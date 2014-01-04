@@ -1,0 +1,18 @@
+{% include 'DecisionBundle:Generic:generic.menu.html.twig' with {'js':'players_add'} %}
+
+<div id='team_info' class='team_info'>Available Teams</div><br/>
+
+{% if arrTeams|length > 0 %}
+<div class='players_container'>
+{% for team in arrTeams %}
+
+   {% include 'DecisionBundle:Team:team.list.item.html.twig'%}
+
+{% endfor %}
+    <br style='clear:both'/>
+</div>
+{% else %}
+    <div> There are no teams to list. </div>
+{% endif %}
+
+{% include 'DecisionBundle:Generic:generic.footer.html.twig'%}

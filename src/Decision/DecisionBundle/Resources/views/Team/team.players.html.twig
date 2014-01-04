@@ -1,31 +1,12 @@
 {% include 'DecisionBundle:Generic:generic.menu.html.twig' with {'js':'players_add'} %}
 <script type='text/javascript'>
     strAjaxPath = '{{ajax_url}}';
+    nTeamId = {{team.getId()}};
+    arrSelectedPlayers = Array();
 </script>
-<div id="outcome" class="outcome">Team has been added!</div>
 
+<div id="outcome" class="outcome">aTeam has been added!</div>
 
-<div id='team_info' class='team_info'><strong>{{team_name}}, 
-{% if team_assisted %}
-    assisted mode
-{% else %}
-    not assisted
-{% endif %}
-</strong></div>
-<div> Team current has <span id='nb_players'>{{nPlayers}}</span> players</div>
-<div id='alerts'>&nbsp;</div><br/>
-
-{% if arrPlayers|length > 0 %}
-<div class='players_container'>
-{% for player in arrPlayers %}
-
-   {% include 'DecisionBundle:Player:player.box.html.twig'%}
-
-{% endfor %}
-    <br style='clear:both'/>
-</div>
-{% else %}
-    <div> There are no players left to add. </div>
-{% endif %}
+{% include 'DecisionBundle:Team:team.list.players.html.twig'%}
 
 {% include 'DecisionBundle:Generic:generic.footer.html.twig'%}

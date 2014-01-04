@@ -1,0 +1,24 @@
+<div id='team_info' class='team_info'><strong>{{team.getTeamName()}}, 
+{% if team.getTeamAssisted() %}
+    assisted mode
+{% else %}
+    not assisted
+{% endif %}
+</strong></div>
+
+<div class='team_info_players'> Team currently has <span id='nb_players'>{{team.getTeamPlayers().count()}}</span> players</div>
+<div id='alerts' class='alerts'>&nbsp;</div><br/>
+
+{% if arrPlayers|length > 0 %}
+<!-- div id='team_container' class='team_container'></div -->
+<div class='players_container' id='players_container'>
+{% for player in arrPlayers %}
+
+   {% include 'DecisionBundle:Player:player.box.html.twig'%}
+
+{% endfor %}
+    <br style='clear:both'/>
+</div>
+{% else %}
+    <div> There are no players left to list. </div>
+{% endif %}

@@ -6,14 +6,17 @@
         <span class='player_position'>
             {{player.getPlayerPosition()}}
         </span>
-        {% if team_name is defined %}
-            <input type='checkbox' id='player_select_{{player.getId()}}' title='Select'/>
+        {% if add_players is defined and add_players %}
+            <input type='button' value='Add' id='player_select_{{player.getId()}}' title='Select'/>
+        {% endif %}
+        {% if remove_players is defined and remove_players %}
+            <input type='button' value='Del' id='player_del_{{player.getId()}}' title='Select'/>
         {% endif %}
     </div>
     <div id='player_attributes' class='player_attributes'>
         <div class='attributes_label'>Strength</div>
         <div class='attributes_info'>
-            {% if is_assisted %}
+            {% if team is defined and team.getTeamAssisted() %}
                 {{player.getAttributesNormalized().getStrength()}}
             {% else %}
                 {{player.getAttributesRegular().getStrength()}}
@@ -22,7 +25,7 @@
 
         <div class='attributes_label'>Reactions</div>
         <div class='attributes_info'>
-            {% if is_assisted %}
+            {% if team is defined and team.getTeamAssisted() %}
                 {{player.getAttributesNormalized().getReactions()}}
             {% else %}
                 {{player.getAttributesRegular().getReactions()}}
@@ -31,7 +34,7 @@
 
         <div class='attributes_label'>Height</div>
         <div class='attributes_info'>
-            {% if is_assisted %}
+            {% if team is defined and team.getTeamAssisted() %}
                 {{player.getAttributesNormalized().getHeight()}}
             {% else %}
                 {{player.getAttributesRegular().getHeight()}}
@@ -40,7 +43,7 @@
 
         <div class='attributes_label'>Age</div>
         <div class='attributes_info'>
-            {% if is_assisted %}
+            {% if team is defined and team.getTeamAssisted() %}
                 {{player.getAttributesNormalized().getAge()}}
             {% else %}
                 {{player.getAttributesRegular().getAge()}}
@@ -49,7 +52,7 @@
 
         <div class='attributes_label'>Accuracy</div>
         <div class='attributes_info'>
-            {% if is_assisted %}
+            {% if team is defined and team.getTeamAssisted() %}
                 {{player.getAttributesNormalized().getAccuracy()}}
             {% else %}
                 {{player.getAttributesRegular().getAccuracy()}}
@@ -58,7 +61,7 @@
 
         <div class='attributes_label'>Injuries</div>
         <div class='attributes_info'>
-            {% if is_assisted %}
+            {% if team is defined and team.getTeamAssisted() %}
                 {{player.getAttributesNormalized().getInjuries()}}
             {% else %}
                 {{player.getAttributesRegular().getInjuries()}}
