@@ -1,6 +1,14 @@
-<div id='player_box' class='player_box'>
+<div id='player_box_{{player.getId()}}' class='player_box'>
     <div id='player_info' class='player_info'>
-        <span class='player_name'>{{player.getPlayerName()}}</span>, <span class='player_position'>{{player.getPlayerPosition()}}</span>
+        <span class='player_name'>
+            {{player.getPlayerName()}}
+        </span>,&nbsp;
+        <span class='player_position'>
+            {{player.getPlayerPosition()}}
+        </span>
+        {% if team_name is defined %}
+            <input type='checkbox' id='player_select_{{player.getId()}}' title='Select'/>
+        {% endif %}
     </div>
     <div id='player_attributes' class='player_attributes'>
         <div class='attributes_label'>Strength</div>

@@ -25,3 +25,7 @@ player_add_attrib:
 player_add_success:
     pattern: /player/success/{player_id}
     defaults: { _controller: DecisionBundle:Player:addSuccess }
+
+team_add_player:
+    pattern: /player/add_to_team/{team_id}/{player_id}
+    defaults: { _controller: DecisionBundle:Team:addPlayer }

@@ -1,5 +1,11 @@
 <head>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    {% if js is defined %}
+        {% if js == 'players_add'%}
+            <script src="{{ asset('bundles/decision/js/players_add.js') }}"></script>
+        {% endif %}
+    {% endif %}
     <link href="{{ asset('bundles/decision/css/base.css') }}" rel="stylesheet" type="text/css" />
 </head>
 <body>

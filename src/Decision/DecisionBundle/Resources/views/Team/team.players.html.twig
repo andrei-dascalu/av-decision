@@ -1,5 +1,9 @@
-{% include 'DecisionBundle:Generic:generic.menu.html.twig'%}
+{% include 'DecisionBundle:Generic:generic.menu.html.twig' with {'js':'players_add'} %}
+<script type='text/javascript'>
+    strAjaxPath = '{{ajax_url}}';
+</script>
 <div id="outcome" class="outcome">Team has been added!</div>
+
 
 <div id='team_info' class='team_info'><strong>{{team_name}}, 
 {% if team_assisted %}
@@ -8,6 +12,8 @@
     not assisted
 {% endif %}
 </strong></div>
+<div> Team current has <span id='nb_players'>{{nPlayers}}</span> players</div>
+<div id='alerts'>&nbsp;</div><br/>
 
 {% if arrPlayers|length > 0 %}
 <div class='players_container'>

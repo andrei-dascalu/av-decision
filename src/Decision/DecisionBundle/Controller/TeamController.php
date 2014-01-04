@@ -37,7 +37,7 @@ class TeamController extends Controller
 
         $arrParams = array(
             'outcome'=>'Create new Team',
-            'form' =>$form->createView(),
+            'form' =>$form->createView()
         );
         return $this->render('DecisionBundle:Team:team.form.html.twig', $arrParams);
     }
@@ -47,6 +47,8 @@ class TeamController extends Controller
                     ->getRepository('DecisionBundle:Team')
                     ->find($team_id);
 
+        $arrTeamPlayers = $team->getTeamPlayers();
+
         $arrPlayers = $this->getDoctrine()
                     ->getRepository('DecisionBundle:Player')
                     ->findBy(array('playerTeamId' => null));
@@ -55,8 +57,50 @@ class TeamController extends Controller
             'team_name' => $team->getTeamName(),
             'team_assisted' => $team->getTeamAssisted(),
             'is_assisted' => $team->getTeamAssisted(),
-            'arrPlayers' => $arrPlayers
+            'nPlayers' => $arrTeamPlayers->count(),
+            'arrPlayers' => $arrPlayers,
+            'ajax_url' => $this->generateUrl('team_add_player',array('team_id'=>$team->getId(),'player_id'=>'PPPP'))
         );
         return $this->render('DecisionBundle:Team:team.players.html.twig', $arrParams);   
+    }
+
+    public function addPlayerAction(Request $request, $team_id, $player_id) {
+        $team = $this->getDoctrine()
+                    ->getRepository('DecisionBundle:Team')
+                    ->find($team_id);
+        $player = $this->getDoctrine()
+                    ->getRepository('DecisionBundle:Player')
+                    ->find($player_id);
+
+        $arrTeamPlayers = $team->getTeamPlayers();
+        $obj = array();
+        if($arrTeamPlayers->count() < 5) {
+            try {
+                $team->addTeamPlayer($player);
+                $player->setPlayerTeamId($team);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($team);
+                $em->persist($player);
+                $em->flush();
+                $obj['error'] = 0;
+                $obj['message'] = 'Player has been added!';
+            } catch (Exception $ex) {
+                $obj['error'] = 1;
+                $obj['message'] = $ex->getMessage();
+            }
+        } else {
+            $obj['error'] = 2;
+            $obj['message'] = "Cannot add more players, team has teached 5";
+        }
+
+        $arrTeamPlayers = $team->getTeamPlayers();
+        $obj['players'] = $arrTeamPlayers->count();
+        $strJSON = json_encode($obj);
+
+        $arrParams=array(
+            'json' => $strJSON
+        );
+
+        return $this->render('DecisionBundle:Team:team.json.html.twig', $arrParams); 
     }
 }
