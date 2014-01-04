@@ -1,8 +1,8 @@
 {% include 'DecisionBundle:Generic:generic.menu.html.twig' with {'js':'players_add'} %}
 <script type='text/javascript'>
     strAjaxPath = '{{ajax_url}}';
+    strAjaxRemovePath = '{{ajax_remove_url}}';
     nTeamId = {{team.getId()}};
-    arrSelectedPlayers = Array();
 </script>
 
 <div id="outcome" class="outcome">aTeam has been added!</div>

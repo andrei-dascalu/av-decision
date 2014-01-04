@@ -57,8 +57,10 @@ class TeamController extends Controller
             'team' => $team,
             'add_players' => true,
             'remove_players' => false,
+            'arrSelectedPlayers' => $arrTeamPlayers,
             'arrPlayers' => $arrPlayers,
-            'ajax_url' => $this->generateUrl('team_add_player',array('team_id'=>$team->getId(),'player_id'=>'PPPP'))
+            'ajax_url' => $this->generateUrl('team_add_player',array('team_id'=>$team->getId(),'player_id'=>'PPPP')),
+            'ajax_remove_url' => $this->generateUrl('team_remove_player',array('team_id'=>$team->getId(),'player_id'=>'PPPP'))
         );
         return $this->render('DecisionBundle:Team:team.players.html.twig', $arrParams);   
     }

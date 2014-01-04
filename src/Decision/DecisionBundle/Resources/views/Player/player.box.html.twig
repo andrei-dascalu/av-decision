@@ -6,12 +6,6 @@
         <span class='player_position'>
             {{player.getPlayerPosition()}}
         </span>
-        {% if add_players is defined and add_players %}
-            <input type='button' value='Add' id='player_select_{{player.getId()}}' title='Select'/>
-        {% endif %}
-        {% if remove_players is defined and remove_players %}
-            <input type='button' value='Del' id='player_del_{{player.getId()}}' title='Select'/>
-        {% endif %}
     </div>
     <div id='player_attributes' class='player_attributes'>
         <div class='attributes_label'>Strength</div>

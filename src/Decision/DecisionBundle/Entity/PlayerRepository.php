@@ -12,4 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class PlayerRepository extends EntityRepository
 {
+
+    public function fetchFreePlayers() {
+        return $this->getEntityManager()
+            ->createQuery('SELECT p FROM DecisionBundle:Player p WHERE p.playerTeamId > 0')
+            ->getResult();
+    }
 }

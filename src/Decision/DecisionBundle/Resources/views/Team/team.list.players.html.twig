@@ -10,8 +10,14 @@
 <div id='alerts' class='alerts'>&nbsp;</div><br/>
 
 {% if arrPlayers|length > 0 %}
-<!-- div id='team_container' class='team_container'></div -->
-<div class='players_container' id='players_container'>
+<div id='team_container' class='team_container connect_sortable'>
+{% for player in arrSelectedPlayers %}
+
+   {% include 'DecisionBundle:Player:player.box.html.twig'%}
+
+{% endfor %}
+</div>
+<div class='players_container connect_sortable' id='players_container'>
 {% for player in arrPlayers %}
 
    {% include 'DecisionBundle:Player:player.box.html.twig'%}
