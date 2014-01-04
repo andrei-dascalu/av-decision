@@ -1,0 +1,36 @@
+Decision\DecisionBundle\Entity\Player:
+    type: entity
+    table: null
+    repositoryClass: Decision\DecisionBundle\Entity\PlayerRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToOne:
+        playerTeamId:
+            nullable: true
+            targetEntity: Team
+            inversedby: team_players
+            joinColumn:
+                name: player_team_id
+                referencedColumnName: id
+    oneToOne:
+        attributesRegular:
+            nullable: true
+            targetEntity: AttributesRegular
+        attributesNormalized:
+            nullable: true
+            targetEntity: AttributesNormalized
+    fields:
+        playerName:
+            type: string
+            length: 80
+            column: player_name
+            unique: true
+        playerPosition:
+            type: string
+            length: '26'
+            column: player_position
+    lifecycleCallbacks: {  }

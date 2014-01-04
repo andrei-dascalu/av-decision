@@ -1,0 +1,27 @@
+decision_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: DecisionBundle:Default:index }
+
+decision_fetch:
+    pattern: /show
+    defaults: { _controller: DecisionBundle:Default:show }
+
+team_add:
+    pattern: /team/add
+    defaults: { _controller: DecisionBundle:Team:addTeam }
+
+team_add_success:
+    pattern: /team/add
+    defaults: { _controller: DecisionBundle:Team:addSuccess }
+
+player_add:
+    pattern: /player/add
+    defaults: { _controller: DecisionBundle:Player:addPlayer }
+
+player_add_attrib:
+    pattern: /player/add_attrib/{player_id}
+    defaults: { _controller: DecisionBundle:Player:addAttrib }
+
+player_add_success:
+    pattern: /player/success/{player_id}
+    defaults: { _controller: DecisionBundle:Player:addSuccess }

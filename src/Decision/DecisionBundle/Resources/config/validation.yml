@@ -1,0 +1,44 @@
+# src/Acme/UserBundle/Resources/config/validation.yml
+Decision\DecisionBundle\Entity\Player:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: playerName
+            message: This name already exists
+    properties:
+        playerName:
+            - NotBlank: ~
+        playerPosition:
+            - NotBlank: ~
+
+Decision\DecisionBundle\Entity\AttributesRegular:
+    properties:
+        strength:
+            - NotBlank: ~
+        reactions:
+            - NotBlank: ~
+        height:
+            - Range:
+                min: 150
+                max: 250
+                minMessage: You must be at least 150cm tall to enter
+                maxMessage: You cannot be taller than 250cm to enter
+                invalidMessage: Height must be numeric
+            - NotBlank: ~
+        accuracy:
+            - NotBlank: ~
+        injuries:
+            - NotBlank: ~
+            - Range:
+                min: 0
+                max: 12
+                minMessage: Min
+                maxMessage: Player may have at most 12 injuries
+                invalidMessage: HNumber of injuries must be numeric
+        age:
+            - NotBlank: ~
+            - Range:
+                min: 17
+                max: 35
+                minMessage: Player may be at least 17 years old
+                maxMessage: Player may be at most 35 years old
+                invalidMessage: Height must be numeric

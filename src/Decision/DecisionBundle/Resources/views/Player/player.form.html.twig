@@ -1,0 +1,9 @@
+{% include 'DecisionBundle:Generic:generic.menu.html.twig'%}
+<div id="outcome" class="outcome">
+    {{ outcome }}
+    {% if step == 2 %}
+        </br><em>{{player_name}}, {{player_position}}</em>
+    {% endif %}
+</div>
+{{ form(form) }}
+{% include 'DecisionBundle:Generic:generic.footer.html.twig'%}

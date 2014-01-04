@@ -1,0 +1,18 @@
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <link href="{{ asset('bundles/decision/css/base.css') }}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="menu" class="menu">
+        <div id="btn_create_player" class="menu_item">
+            <a href='{{path('player_add')}}'>Create Player</a>
+        </div>
+        <div id="btn_create_team" class="menu_item">
+            <a href='{{path('team_add')}}'>Create Team</a>
+        </div>
+        <div id="btn_verify_team" class="menu_item">
+            Verify Team
+        </div>
+    </div>
+    <div style="clear:both">&nbsp;</div>
+    <div class="content_body">

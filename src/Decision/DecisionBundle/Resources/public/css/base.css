@@ -1,0 +1,64 @@
+body {
+    background-color:#DDDDDD;
+    font-size:12px;
+    font-family:Arial,sans-serif;
+}
+
+.content_body {
+    margin:auto;
+    width:630px;
+}
+
+.menu {
+    margin:auto;
+    width:630px;
+}
+
+.menu_item {
+    cursor:pointer;
+    float:left;
+    width:208px;
+    border:1px solid black;
+    text-align:center;
+}
+
+.outcome {
+    width: 260px;
+    font-size: 14px;
+    margin:auto;
+    font-weight:bold;
+    background-color:#787878;
+    color:white;
+    text-align:center;
+    padding-top:8px;
+    padding-bottom:8px;
+    margin-bottom:10px;
+}
+
+#form div li {
+    color:red;
+    font-style: italic;
+}
+
+
+.player_info {
+    width:260px;
+    font-size:14px;
+    margin:auto;
+    text-align:center;
+}
+.attributes {
+    width:260px;
+    margin:auto;
+}
+
+.attributes_label {
+    width:40%;
+    float:left;
+}
+
+.attributes_info {
+    width:60%;
+    float:left;
+    text-align:center;
+}

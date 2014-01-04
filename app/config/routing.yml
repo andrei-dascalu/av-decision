@@ -1,0 +1,4 @@
+decision:
+    resource: "@DecisionBundle/Resources/config/routing.yml"
+    prefix:   /
+

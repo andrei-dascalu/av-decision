@@ -1,0 +1,7 @@
+parameters:
+#    decision.example.class: Decision\DecisionBundle\Example
+
+services:
+#    decision.example:
+#        class: %decision.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

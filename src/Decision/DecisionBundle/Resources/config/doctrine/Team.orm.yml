@@ -1,0 +1,30 @@
+Decision\DecisionBundle\Entity\Team:
+    type: entity
+    table: null
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: teamName
+    repositoryClass: Decision\DecisionBundle\Entity\TeamRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    oneToMany:
+        team_players:
+            nullable: true
+            targetEntity: Player
+            mappedBy: playerTeamId
+    fields:
+        teamName:
+            type: string
+            length: 80
+            column: team_name
+            unique: true
+        teamAssisted:
+            type: integer
+            column: team_assisted
+        teamUserId:
+            type: integer
+            column: team_user_id
+    lifecycleCallbacks: {  }
