@@ -62,4 +62,3 @@ Decision\DecisionBundle\Entity\Team:
                 minMessage: Name must be at least 3 characters long
                 maxMessage: Name must be at most 60 characters long
         teamAssisted:
-            - NotBlank: ~

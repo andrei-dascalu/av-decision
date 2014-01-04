@@ -2,13 +2,6 @@
 <div id="outcome" class="outcome">Player has been added!</div>
 
 <div id='player_info' class='player_info'><strong>{{player_name}}, {{player_position}}</strong></div>
-<div id='player_attributes' class='attributes'>
-    <div class='attributes_label'>Player strength</div><div class='attributes_info'>{{player_strength}}</div>
-    <div class='attributes_label'>Player reactions</div><div class='attributes_info'>{{player_reactions}}</div>
-    <div class='attributes_label'>Player height</div><div class='attributes_info'>{{player_height}} cm</div>
-    <div class='attributes_label'>Player age</div><div class='attributes_info'>{{player_age}} years</div>
-    <div class='attributes_label'>Player accuracy</div><div class='attributes_info'>{{player_accuracy}}</div>
-    <div class='attributes_label'>Player injuries</div><div class='attributes_info'>{{player_injuries}}</div>
-</div>
+{% include 'DecisionBundle:Player:player.attributes.html.twig'%}
 
 {% include 'DecisionBundle:Generic:generic.footer.html.twig'%}

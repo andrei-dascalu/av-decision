@@ -19,7 +19,7 @@ class TeamController extends Controller
         $team = new Team();
         $form = $this->createFormBuilder($team)
         ->add('teamName', 'text',array('label'=>'Team Name'))
-        ->add('teamAssisted', 'checkbox',array('label'=>'Is Assisted'))
+        ->add('teamAssisted', 'checkbox',array('label'=>'Is Assisted','required'=>false))
         ->add('save', 'submit',array('label'=>'Next'))
         ->getForm();
 
@@ -42,8 +42,15 @@ class TeamController extends Controller
         return $this->render('DecisionBundle:Team:team.form.html.twig', $arrParams);
     }
 
-    public function addPlayersAction(Request $request) {
-        $arrParams = array();
+    public function addPlayersAction(Request $request, $team_id) {
+        $team = $this->getDoctrine()
+                    ->getRepository('DecisionBundle:Team')
+                    ->find($team_id);
+
+        $arrParams = array(
+            'team_name' => $team->getTeamName(),
+            'team_assisted' => $team->getTeamAssisted()
+        );
         return $this->render('DecisionBundle:Team:team.players.html.twig', $arrParams);   
     }
 }
