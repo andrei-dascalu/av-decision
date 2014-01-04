@@ -91,7 +91,7 @@ class PlayerController extends Controller
         $player = new Player();
         $data = new DataHolder();
         $form = $this->createFormBuilder($player)
-        ->add('playerName', 'text',array('label'=>'Player Name','required'=>false))
+        ->add('playerName', 'text',array('label'=>'Player Name'))
         ->add('playerPosition', 'choice',array('label'=>'Player Position','choices'=>$data->getPositions()))
         ->add('save', 'submit',array('label'=>'Next'))
         ->getForm();

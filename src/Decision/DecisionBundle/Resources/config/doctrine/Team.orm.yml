@@ -18,13 +18,14 @@ Decision\DecisionBundle\Entity\Team:
     fields:
         teamName:
             type: string
-            length: 80
+            length: 60
             column: team_name
             unique: true
         teamAssisted:
-            type: integer
+            type: boolean
             column: team_assisted
         teamUserId:
+            nullable: true
             type: integer
             column: team_user_id
     lifecycleCallbacks: {  }

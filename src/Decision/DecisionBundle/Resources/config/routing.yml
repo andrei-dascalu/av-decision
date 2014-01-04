@@ -10,9 +10,9 @@ team_add:
     pattern: /team/add
     defaults: { _controller: DecisionBundle:Team:addTeam }
 
-team_add_success:
-    pattern: /team/add
-    defaults: { _controller: DecisionBundle:Team:addSuccess }
+team_add_players:
+    pattern: /team/add_players/{team_id}
+    defaults: { _controller: DecisionBundle:Team:addPlayers }
 
 player_add:
     pattern: /player/add

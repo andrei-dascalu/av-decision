@@ -7,6 +7,11 @@ Decision\DecisionBundle\Entity\Player:
     properties:
         playerName:
             - NotBlank: ~
+            - Length:
+                min: 3
+                max: 60
+                minMessage: Name must be at least 3 characters long
+                maxMessage: Name must be at most 60 characters long
         playerPosition:
             - NotBlank: ~
 
@@ -42,3 +47,19 @@ Decision\DecisionBundle\Entity\AttributesRegular:
                 minMessage: Player may be at least 17 years old
                 maxMessage: Player may be at most 35 years old
                 invalidMessage: Height must be numeric
+
+Decision\DecisionBundle\Entity\Team:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: teamName
+            message: This name already exists
+    properties:
+        teamName:
+            - NotBlank: ~
+            - Length:
+                min: 3
+                max: 60
+                minMessage: Name must be at least 3 characters long
+                maxMessage: Name must be at most 60 characters long
+        teamAssisted:
+            - NotBlank: ~
