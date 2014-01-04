@@ -1,7 +1,17 @@
 {% include 'DecisionBundle:Generic:generic.menu.html.twig'%}
 <div id="outcome" class="outcome">Player has been added!</div>
 
-<div id='player_info' class='player_info'><strong>{{player_name}}, {{player_position}}</strong></div>
-{% include 'DecisionBundle:Player:player.attributes.html.twig'%}
+{% if arrPlayers|length > 0 %}
+<div class='players_container'>
+{% for player in arrPlayers %}
+
+   {% include 'DecisionBundle:Player:player.box.html.twig'%}
+
+{% endfor %}
+    <br style='clear:both'/>
+</div>
+{% else %}
+    <div> There are no players left to add. </div>
+{% endif %}
 
 {% include 'DecisionBundle:Generic:generic.footer.html.twig'%}

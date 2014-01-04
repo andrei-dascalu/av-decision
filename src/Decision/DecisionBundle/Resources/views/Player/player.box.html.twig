@@ -1,0 +1,60 @@
+<div id='player_box' class='player_box'>
+    <div id='player_info' class='player_info'>
+        <span class='player_name'>{{player.getPlayerName()}}</span>, <span class='player_position'>{{player.getPlayerPosition()}}</span>
+    </div>
+    <div id='player_attributes' class='player_attributes'>
+        <div class='attributes_label'>Strength</div>
+        <div class='attributes_info'>
+            {% if is_assisted %}
+                {{player.getAttributesNormalized().getStrength()}}
+            {% else %}
+                {{player.getAttributesRegular().getStrength()}}
+            {% endif %}
+        </div>
+
+        <div class='attributes_label'>Reactions</div>
+        <div class='attributes_info'>
+            {% if is_assisted %}
+                {{player.getAttributesNormalized().getReactions()}}
+            {% else %}
+                {{player.getAttributesRegular().getReactions()}}
+            {% endif %}
+        </div>
+
+        <div class='attributes_label'>Height</div>
+        <div class='attributes_info'>
+            {% if is_assisted %}
+                {{player.getAttributesNormalized().getHeight()}}
+            {% else %}
+                {{player.getAttributesRegular().getHeight()}}
+            {% endif %}
+        </div>
+
+        <div class='attributes_label'>Age</div>
+        <div class='attributes_info'>
+            {% if is_assisted %}
+                {{player.getAttributesNormalized().getAge()}}
+            {% else %}
+                {{player.getAttributesRegular().getAge()}}
+            {% endif %}
+        </div>
+
+        <div class='attributes_label'>Accuracy</div>
+        <div class='attributes_info'>
+            {% if is_assisted %}
+                {{player.getAttributesNormalized().getAccuracy()}}
+            {% else %}
+                {{player.getAttributesRegular().getAccuracy()}}
+            {% endif %}
+        </div>
+
+        <div class='attributes_label'>Injuries</div>
+        <div class='attributes_info'>
+            {% if is_assisted %}
+                {{player.getAttributesNormalized().getInjuries()}}
+            {% else %}
+                {{player.getAttributesRegular().getInjuries()}}
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -47,9 +47,15 @@ class TeamController extends Controller
                     ->getRepository('DecisionBundle:Team')
                     ->find($team_id);
 
+        $arrPlayers = $this->getDoctrine()
+                    ->getRepository('DecisionBundle:Player')
+                    ->findBy(array('playerTeamId' => null));
+
         $arrParams = array(
             'team_name' => $team->getTeamName(),
-            'team_assisted' => $team->getTeamAssisted()
+            'team_assisted' => $team->getTeamAssisted(),
+            'is_assisted' => $team->getTeamAssisted(),
+            'arrPlayers' => $arrPlayers
         );
         return $this->render('DecisionBundle:Team:team.players.html.twig', $arrParams);   
     }

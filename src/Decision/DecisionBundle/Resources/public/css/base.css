@@ -6,18 +6,18 @@ body {
 
 .content_body {
     margin:auto;
-    width:630px;
+    width:690px;
 }
 
 .menu {
     margin:auto;
-    width:630px;
+    width:690px;
 }
 
 .menu_item {
     cursor:pointer;
     float:left;
-    width:208px;
+    width:228px;
     border:1px solid black;
     text-align:center;
 }
@@ -41,24 +41,51 @@ body {
 }
 
 
+.players_container {
+    width:690px;
+}
+
+.player_box {
+    width:31%;
+    float:left;
+    margin-right:3px;
+}
+
 .player_info {
-    width:260px;
+    width:100%;
     font-size:14px;
     margin:auto;
     text-align:center;
+    background-color:#454545;
+    padding-top:4px;
+    padding-bottom: 4px;
+    color:white;
 }
-.attributes {
-    width:260px;
+
+.player_attributes {
+    width:100%;
     margin:auto;
 }
 
 .attributes_label {
     width:40%;
     float:left;
+    font-size:11px;
+    border-bottom: 1px solid black;
+    font-weight:bold;
 }
 
 .attributes_info {
     width:60%;
     float:left;
     text-align:center;
+    font-size:11px;
+    border-bottom: 1px solid black;
+}
+
+.team_info {
+    width:260px;
+    font-size:14px;
+    text-align:center;
+    margin-bottom:16px;
 }

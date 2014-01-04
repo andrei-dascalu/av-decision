@@ -20,21 +20,12 @@ class PlayerController extends Controller
 {
 
     public function addSuccessAction(Request $request, $player_id) {
-        var_dump($player_id);
         $player = $this->getDoctrine()
                     ->getRepository('DecisionBundle:Player')
                     ->find($player_id);
-
-        $attribs = $player->getAttributesRegular();
         $arrParams = array(
-            'player_name' => $player->getPlayerName(),
-            'player_position' => $player->getPlayerPosition(),
-            'player_strength' => $attribs->getStrength(),
-            'player_reactions' => $attribs->getReactions(),
-            'player_height' => $attribs->getHeight(),
-            'player_age' => $attribs->getAge(),
-            'player_accuracy' => $attribs->getAccuracy(),
-            'player_injuries' => $attribs->getInjuries()
+            'arrPlayers' => array($player),
+            'is_assisted' => true
         );
         return $this->render('DecisionBundle:Player:player.success.html.twig',$arrParams);
     }
