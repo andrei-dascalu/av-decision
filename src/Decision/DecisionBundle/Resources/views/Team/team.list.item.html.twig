@@ -17,11 +17,4 @@
             team full
         {% endif %}
     </div>
-    <div class='team_action'>
-        {% if team.getTeamPlayers().count() > 0 %}
-            <a href='{{path('team_list_players',{'team_id': team.getId()}) }}'>List Players</a>
-        {% else %}
-            team empty
-        {% endif %}
-    </div>
 </div><div style='clear:both'>&nbsp;</div>
