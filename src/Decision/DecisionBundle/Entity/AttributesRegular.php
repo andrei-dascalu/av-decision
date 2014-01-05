@@ -250,7 +250,7 @@ class AttributesRegular
         $items = count($arrStrength);
 
         $step = ceil(100/$items);
-        $current = 0;
+        $current = $step;
 
         $i=0;
         while($strength != $arrStrength[$i]) {
@@ -266,7 +266,7 @@ class AttributesRegular
         $arrAccuracy = array_keys($dataHolder->getAccuracy());
         $items = count($arrAccuracy);
         $step = ceil(100/$items);
-        $current = 0;
+        $current = $step;
 
         $i=0;
         while($accuracy != $arrAccuracy[$i]) {
@@ -283,7 +283,7 @@ class AttributesRegular
         $items = count($arrReactions);
 
         $step = ceil(100/$items);
-        $current = 0;
+        $current = $step;
 
         $i=0;
         while($reactions != $arrReactions[$i]) {
@@ -297,47 +297,33 @@ class AttributesRegular
     private function NormalizeInjuries($injuries) {
         $min=0;
         $max = 12;
+        
+        if($injuries == $min) return 100;
+        if($injuries ==$max) return 0;
+        
+        $current = round(($injuries/$max) * 100);
 
-        $step = ceil(100/($max-$min));
-        $i=$max;
-        $current = 0;
-
-        while($i >= $injuries) {
-            $current += $step;
-            $i--;
-        }
-
-        return $current;
+        return (100 - $current);
     }
 
     private function NormalizeAge($age) {
         $min=17;
         $max = 35;
 
-        $step = ceil(100/($max-$min));
-        $i=$max;
-        $current = 0;
+        if($age == $min) return 100;
+        if($age ==$max) return 0;
+        
+        $current = round((($age-$min)/($max-$min)) * 100);
 
-        while($i >= $age) {
-            $current += $step;
-            $i--;
-        }
-
-        return $current;
+        return (100 - $current);
     }
 
     private function NormalizeHeight($height) {
         $min=15;
         $max = 25;
+        $height = round($height/10);
 
-        $step = ceil(100/($max-$min));
-        $i=$min;
-        $current = 0;
-
-        while($i <= floor($height/10)) {
-            $current += $step;
-            $i++;
-        }
+        $current = round((($height-$min)/($max-$min)) * 100);
 
         return $current;
     }
