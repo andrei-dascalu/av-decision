@@ -9,7 +9,6 @@
 <div class='team_info_players'> Team currently has <span id='nb_players'>{{team.getTeamPlayers().count()}}</span> players</div>
 <div id='alerts' class='alerts'>&nbsp;</div><br/>
 
-{% if arrPlayers|length > 0 %}
 <div id='team_container' class='team_container connect_sortable'>
 {% for player in arrSelectedPlayers %}
 
@@ -18,13 +17,15 @@
 {% endfor %}
 </div>
 <div class='players_container connect_sortable' id='players_container'>
+
+{% if arrPlayers|length > 0 %}
 {% for player in arrPlayers %}
 
    {% include 'DecisionBundle:Player:player.box.html.twig'%}
 
 {% endfor %}
-    <br style='clear:both'/>
-</div>
 {% else %}
     <div> There are no players left to list. </div>
 {% endif %}
+    <br style='clear:both'/>
+</div>
