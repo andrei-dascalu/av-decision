@@ -11,10 +11,6 @@
         {{team.getTeamPlayers().count()}}
     </div>
     <div class='team_action'>
-        {% if team.getTeamPlayers().count() < 5 %}
-            <a href='{{path('team_add_players',{'team_id': team.getId()}) }}'>Add Players</a>
-        {% else %}
-            team full
-        {% endif %}
+        <a href='{{path('team_add_players',{'team_id': team.getId()}) }}'>Manage Players</a>
     </div>
 </div><div style='clear:both'>&nbsp;</div>

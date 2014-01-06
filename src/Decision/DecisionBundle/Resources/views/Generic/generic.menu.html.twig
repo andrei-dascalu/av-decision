@@ -1,12 +1,16 @@
 <head>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-    {% if js is defined %}
-        {% if js == 'players_add'%}
+    <script src="{{ asset('bundles/decision/js/globals.js') }}"></script>
+        {% if js is defined and js == 'players_add' %}
             <script src="{{ asset('bundles/decision/js/players_add.js') }}"></script>
         {% endif %}
-    {% endif %}
+        {% if list_tabs is defined and list_tabs == 'jquery_tabs' %}
+            <script src="{{ asset('bundles/decision/js/tabs.js') }}"></script>
+        {% endif %}
     <link href="{{ asset('bundles/decision/css/base.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/decision/css/')}}{{theme}}/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('bundles/decision/css/')}}{{theme}}/jquery.ui.theme.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="menu" class="menu">
@@ -18,6 +22,9 @@
         </div>
         <div id="btn_create_team" class="menu_item">
             <a href='{{path('team_list')}}'>List Teams</a>
+        </div>
+        <div id="btn_list_players" class="menu_item">
+            <a href='{{path('player_list')}}'>List Players</a>
         </div>
         <div id="btn_verify_team" class="menu_item">
             Verify Team
