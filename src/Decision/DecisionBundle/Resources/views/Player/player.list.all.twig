@@ -1,0 +1,28 @@
+{% include 'DecisionBundle:Generic:generic.menu.html.twig' with {'list_tabs':'jquery_tabs'} %}
+<script type="text/javascript">
+    strAjaxRemovePlayerPath = '{{ajax_remove_player}}';
+</script>
+</div>
+<div id="outcome" class="outcome">All Players</div><br/>
+
+{% if nbPages > 0 %}
+    <div id="tabs" style="width:1000px;margin:auto;">
+        <ul>
+            {% for cnt in 1..nbPages %}
+            <li><a href="#tabs-{{cnt}}">Page {{cnt}}</a></li>
+            {% endfor %}
+        </ul>
+
+        {% for arrP in arrPlayers %}
+            <div id="tabs-{{loop.index}}">
+                <div style="height:300px">
+                    {% for player in arrP %}
+                        {% include 'DecisionBundle:Player:player.box.html.twig'%}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor%}
+    </div>
+{% endif %}
+
+{% include 'DecisionBundle:Generic:generic.footer.html.twig'%}

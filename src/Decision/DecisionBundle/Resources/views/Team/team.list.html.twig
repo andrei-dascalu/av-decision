@@ -1,14 +1,15 @@
 {% include 'DecisionBundle:Generic:generic.menu.html.twig' with {'js':'players_add'} %}
 
-<div id='team_info' class='team_info'>Available Teams</div><br/>
+<div id="outcome" class="outcome">Available Teams</div><br/>
 
 {% if arrTeams|length > 0 %}
 <div class='players_container'>
-<div id='team_box' class='team_box'>
+<div id='team_box' class='team_box' style="font-weight:bolder;">
     <div class='team_item'>Team Name</div>
     <div class='team_item'>Assisted Mode</div>
     <div class='team_item'>Player Count</div>
     <div class='team_action'>Add Players</div>
+    <div class='team_action'>Delete</div>
 </div><div style='clear:both;width:100%;border-top:1px solid black;'>&nbsp;</div>
 {% for team in arrTeams %}
 

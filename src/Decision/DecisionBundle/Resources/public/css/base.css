@@ -22,7 +22,7 @@ body {
 .menu_item {
     cursor:pointer;
     float:left;
-    width:24%;
+    width:19%;
     border:1px solid black;
     text-align:center;
 }
@@ -117,7 +117,7 @@ body {
 }
 
 .team_item, .team_action {
-    width:24%;
+    width:19%;
     float:left;
 }
 

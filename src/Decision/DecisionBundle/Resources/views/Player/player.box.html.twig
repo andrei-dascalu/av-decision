@@ -6,6 +6,9 @@
         <span class='player_position'>
             {{player.getPlayerPosition()}}
         </span>
+        {% if ajax_remove_player is defined %}
+        &nbsp;&nbsp;<button id='delete_player_{{player.getId()}}' style='height:20px;font-size:10px'><span>DEL</span></button>
+        {% endif %}
     </div>
     <div id='player_attributes' class='player_attributes'>
         <div class='attributes_label'>Strength</div>

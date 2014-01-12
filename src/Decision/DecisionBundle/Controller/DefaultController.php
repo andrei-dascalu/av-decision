@@ -15,6 +15,6 @@ class DefaultController extends Controller
 
     public function showAction() {
 
-    	return $this->render('DecisionBundle:Default:index.html.twig', array('name' =>"Test"));
+    	return $this->render('DecisionBundle:Default:index.html.twig');
     }
 }

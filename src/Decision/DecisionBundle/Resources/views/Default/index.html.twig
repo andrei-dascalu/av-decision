@@ -2,4 +2,7 @@
 
 Welcome
 
+{% if generator is defined and generator%}
+    {{generated}} Players Generated
+{% endif %}
 {% include 'DecisionBundle:Generic:generic.footer.html.twig'%}
