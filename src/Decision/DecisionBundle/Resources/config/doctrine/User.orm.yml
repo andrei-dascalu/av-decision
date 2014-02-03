@@ -1,0 +1,23 @@
+Decision\DecisionBundle\Entity\User:
+    type: entity
+    table: null
+    repositoryClass: Decision\DecisionBundle\Entity\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    oneToMany:
+        team_players:
+            nullable: true
+            targetEntity: Team
+            mappedBy: teamUserId
+    fields:
+        userName:
+            type: string
+            length: '60'
+        userPassword:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

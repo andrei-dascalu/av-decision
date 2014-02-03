@@ -1,4 +1,3 @@
-# src/Acme/UserBundle/Resources/config/validation.yml
 Decision\DecisionBundle\Entity\Player:
     constraints:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:

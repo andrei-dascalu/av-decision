@@ -15,6 +15,14 @@ Decision\DecisionBundle\Entity\Team:
             nullable: true
             targetEntity: Player
             mappedBy: playerTeamId
+    manyToOne:
+        teamUserId:
+            nullable: true
+            targetEntity: User
+            inversedby: userTeams
+            joinColumn:
+                name: team_user_id
+                referencedColumnName: id
     fields:
         teamName:
             type: string
@@ -24,8 +32,4 @@ Decision\DecisionBundle\Entity\Team:
         teamAssisted:
             type: boolean
             column: team_assisted
-        teamUserId:
-            nullable: true
-            type: integer
-            column: team_user_id
     lifecycleCallbacks: {  }
