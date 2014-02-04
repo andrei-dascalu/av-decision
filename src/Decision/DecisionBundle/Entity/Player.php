@@ -43,7 +43,7 @@ class Player
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -66,7 +66,7 @@ class Player
     /**
      * Get playerName
      *
-     * @return string 
+     * @return string
      */
     public function getPlayerName()
     {
@@ -89,7 +89,7 @@ class Player
     /**
      * Get playerPosition
      *
-     * @return string 
+     * @return string
      */
     public function getPlayerPosition()
     {
@@ -112,7 +112,7 @@ class Player
     /**
      * Get attributesRegular
      *
-     * @return \Decision\DecisionBundle\Entity\AttributesRegular 
+     * @return \Decision\DecisionBundle\Entity\AttributesRegular
      */
     public function getAttributesRegular()
     {
@@ -135,7 +135,7 @@ class Player
     /**
      * Get attributesNormalized
      *
-     * @return \Decision\DecisionBundle\Entity\AttributesNormalized 
+     * @return \Decision\DecisionBundle\Entity\AttributesNormalized
      */
     public function getAttributesNormalized()
     {
@@ -158,10 +158,15 @@ class Player
     /**
      * Get playerTeamId
      *
-     * @return \Decision\DecisionBundle\Entity\Team 
+     * @return \Decision\DecisionBundle\Entity\Team
      */
     public function getPlayerTeamId()
     {
         return $this->playerTeamId;
+    }
+
+    public function getEQWScore() {
+        $an = $this->getAttributesNormalized();
+        return $an->getStrength()+$an->getReactions()+$an->getHeight()+$an->getAccuracy()+$an->getInjuries()+$an->getAge();
     }
 }

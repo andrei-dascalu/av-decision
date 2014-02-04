@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $(document).tooltip();
     $("div[id^='btn_']").button().click(function( event ) {
         //event.preventDefault();
     });
@@ -28,7 +29,7 @@ $(document).ready(function() {
                 },
                 error: function (jqXHR, textStatus, errorThrown)
                 {
-                        
+
                 }
             });
         });

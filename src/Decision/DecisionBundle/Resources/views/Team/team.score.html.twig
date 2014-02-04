@@ -1,0 +1,18 @@
+{% include 'DecisionBundle:Generic:generic.menu.html.twig'%}
+<div id="outcome" class="outcome">
+    {{ title }}
+</div>
+<div class="score" title="Scorul se calculeaza ca procentaj din echipa ideala"> {{ score }} &nbsp;</div>
+
+
+<div class="team_container">
+
+{% for player in arrPlayers %}
+
+   {% include 'DecisionBundle:Player:player.box.html.twig'%}
+
+{% endfor %}
+
+</div>
+
+{% include 'DecisionBundle:Generic:generic.footer.html.twig'%}

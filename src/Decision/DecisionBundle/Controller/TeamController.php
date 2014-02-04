@@ -63,7 +63,7 @@ class TeamController extends Controller
             'ajax_remove_url' => $this->generateUrl('team_remove_player',array('team_id'=>$team->getId(),'player_id'=>'PPPP')),
             'ajax_remove_player' => $this->generateUrl('player_remove',array(   'player_id'=>'PPPP'))
         );
-        return $this->render('DecisionBundle:Team:team.players.html.twig', $arrParams);   
+        return $this->render('DecisionBundle:Team:team.players.html.twig', $arrParams);
     }
 
     public function addPlayerAction(Request $request, $team_id, $player_id) {
@@ -103,7 +103,7 @@ class TeamController extends Controller
             'json' => $strJSON
         );
 
-        return $this->render('DecisionBundle:Team:team.json.html.twig', $arrParams); 
+        return $this->render('DecisionBundle:Team:team.json.html.twig', $arrParams);
     }
 
     public function listTeamsAction(Request $request) {
@@ -134,7 +134,7 @@ class TeamController extends Controller
             'arrPlayers' => $arrTeamPlayers,
             'ajax_url' => $this->generateUrl('team_remove_player',array('team_id'=>$team->getId(),'player_id'=>'PPPP'))
         );
-        return $this->render('DecisionBundle:Team:team.players.html.twig', $arrParams);  
+        return $this->render('DecisionBundle:Team:team.players.html.twig', $arrParams);
     }
 
     public function removePlayerAction(Request $request, $team_id, $player_id) {
@@ -170,5 +170,57 @@ class TeamController extends Controller
         );
 
         return $this->render('DecisionBundle:Team:team.json.html.twig', $arrParams);
+    }
+
+    public function scoreAction(Request $request, $team_id) {
+        $team = $this->getDoctrine()
+                    ->getRepository('DecisionBundle:Team')
+                    ->find($team_id);
+
+        $arrTeamPlayers = $team->getTeamPlayers();
+
+        $arrWeights = array();
+
+        if(count($arrTeamPlayers) == 5) {
+            $idealTeamScore = $this->calculateIdealTeamScore();
+
+            foreach($arrTeamPlayers as $player) {
+                $arrWeights[] = $player->getEQWScore();
+            }
+
+            $currentTeamScore = array_sum($arrWeights);
+
+            $score = round(($currentTeamScore/$idealTeamScore)*100,2).'%';
+
+        } else {
+            $score = 'Team Incomplete, please add players';
+        }
+
+        $arrParams=array(
+            'title' => 'Scoring Team: '.$team->getTeamName(),
+            'score' => $score,
+            'team' => $team,
+            'arrPlayers' => $arrTeamPlayers
+        );
+
+        return $this->render('DecisionBundle:Team:team.score.html.twig', $arrParams);
+    }
+
+    private function calculateIdealTeamScore() {
+        //strategia ponderilor egale (EQW)
+        //http://grpupc1.epfl.ch/~luis/teaching/dt/docs/The_adaptive_decision_maker.pdf
+
+        $players = $this->getDoctrine()
+                    ->getRepository('DecisionBundle:Player')
+                    ->findAll();
+
+        $arrWeights = array();
+        foreach($players as $player) {
+            $arrWeights[] = $player->getEQWScore();
+        }
+
+        sort($arrWeights);
+        $arrBest = array_slice($arrWeights,count($arrWeights)-6,5);
+        return array_sum($arrBest);
     }
 }

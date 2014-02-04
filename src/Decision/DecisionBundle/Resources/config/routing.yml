@@ -57,3 +57,7 @@ team_add_players:
 team_delete:
     pattern: /team/delete/{team_id}
     defaults: { _controller: DecisionBundle:Team:delete }
+
+team_score:
+    pattern: /team/score/{team_id}
+    defaults: { _controller: DecisionBundle:Team:score}
