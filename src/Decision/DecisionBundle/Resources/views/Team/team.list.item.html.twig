@@ -10,6 +10,9 @@
     <div class='team_item'>
         {{team.getTeamPlayers().count()}}
     </div>
+    <div class='team_item'>
+        {{team.getScore(ideal)}}
+    </div>
     <div class='team_action'>
         <a href='{{path('team_add_players',{'team_id': team.getId()}) }}'>Manage Players</a>
     </div>
@@ -17,6 +20,6 @@
         <a href='{{path('team_delete',{'team_id': team.getId()}) }}'>Delete Team</a>
     </div>
     <div class='team_action'>
-        <a href='{{path('team_score',{'team_id': team.getId()}) }}'>Score Team</a>
+        <a href='{{path('team_score',{'team_id': team.getId()}) }}'>Score Details</a>
     </div>
 </div><div style='clear:both'>&nbsp;</div>

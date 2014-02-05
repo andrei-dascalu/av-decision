@@ -111,6 +111,7 @@ class TeamController extends Controller
                     ->getRepository('DecisionBundle:Team')->findAll();
 
         $arrParams = array(
+            'ideal' => $this->calculateIdealTeamScore(),
             'arrTeams' => $arrTeams
         );
         return $this->render('DecisionBundle:Team:team.list.html.twig', $arrParams);
@@ -177,30 +178,19 @@ class TeamController extends Controller
                     ->getRepository('DecisionBundle:Team')
                     ->find($team_id);
 
-        $arrTeamPlayers = $team->getTeamPlayers();
+        $idealTeamScore = $this->calculateIdealTeamScore();
 
-        $arrWeights = array();
+        $score = $team->getScore($idealTeamScore);
 
-        if(count($arrTeamPlayers) == 5) {
-            $idealTeamScore = $this->calculateIdealTeamScore();
-
-            foreach($arrTeamPlayers as $player) {
-                $arrWeights[] = $player->getEQWScore();
-            }
-
-            $currentTeamScore = array_sum($arrWeights);
-
-            $score = round(($currentTeamScore/$idealTeamScore)*100,2).'%';
-
-        } else {
-            $score = 'Team Incomplete, please add players';
+        if($score < 0) {
+            $score = "Team incomplete, add players";
         }
 
         $arrParams=array(
             'title' => 'Scoring Team: '.$team->getTeamName(),
             'score' => $score,
             'team' => $team,
-            'arrPlayers' => $arrTeamPlayers
+            'arrPlayers' => $team->getTeamPlayers()
         );
 
         return $this->render('DecisionBundle:Team:team.score.html.twig', $arrParams);
@@ -220,7 +210,7 @@ class TeamController extends Controller
         }
 
         sort($arrWeights);
-        $arrBest = array_slice($arrWeights,count($arrWeights)-6,5);
+        $arrBest = array_slice($arrWeights,count($arrWeights)-5,5);
         return array_sum($arrBest);
     }
 }

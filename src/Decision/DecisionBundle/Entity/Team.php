@@ -33,7 +33,7 @@ class Team
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -56,7 +56,7 @@ class Team
     /**
      * Get teamName
      *
-     * @return string 
+     * @return string
      */
     public function getTeamName()
     {
@@ -79,7 +79,7 @@ class Team
     /**
      * Get teamAssisted
      *
-     * @return integer 
+     * @return integer
      */
     public function getTeamAssisted()
     {
@@ -102,7 +102,7 @@ class Team
     /**
      * Get teamUserId
      *
-     * @return integer 
+     * @return integer
      */
     public function getTeamUserId()
     {
@@ -147,10 +147,34 @@ class Team
     /**
      * Get team_players
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTeamPlayers()
     {
         return $this->team_players;
+    }
+
+    /**
+     * Calculate percentage score based on given ideal
+     */
+    public function getScore($idealScore) {
+        $arrTeamPlayers = $this->getTeamPlayers();
+
+        if(count($arrTeamPlayers) == 5) {
+            $arrWeights = array();
+
+            foreach($arrTeamPlayers as $player) {
+                $arrWeights[] = $player->getEQWScore();
+            }
+
+            $currentTeamScore = array_sum($arrWeights);
+
+            $score = round(($currentTeamScore/$idealScore)*100,2).'%';
+
+        } else {
+            $score = -1;
+        }
+
+        return $score;
     }
 }
