@@ -28,7 +28,7 @@ class User
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -51,7 +51,7 @@ class User
     /**
      * Get userName
      *
-     * @return string 
+     * @return string
      */
     public function getUserName()
     {
@@ -74,7 +74,7 @@ class User
     /**
      * Get userPassword
      *
-     * @return string 
+     * @return string
      */
     public function getUserPassword()
     {
@@ -119,7 +119,7 @@ class User
     /**
      * Get team_players
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTeamPlayers()
     {

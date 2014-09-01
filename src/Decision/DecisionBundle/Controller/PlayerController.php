@@ -102,7 +102,7 @@ class PlayerController extends Controller
         $outcome = 'Add a new player';
 
         if ($request->getMethod() == 'POST') {
-            if($form->isValid()) {
+            if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($player);
                 $em->flush();
@@ -177,7 +177,7 @@ class PlayerController extends Controller
         $arrStrength = array_keys($data->getStrength());
         $arrAccuracy = array_keys($data->getAccuracy());
         $arrReactions = array_keys($data->getReactions());
-        for($i=0;$i<$counter;$i++) {
+        for ($i=0;$i<$counter;$i++) {
             $player = new Player();
             $player->setPlayerName("Player ".$i);
             $player->setPlayerPosition($arrPositions[rand(0,3)]);

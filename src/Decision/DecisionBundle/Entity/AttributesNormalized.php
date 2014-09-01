@@ -55,7 +55,7 @@ class AttributesNormalized
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -78,7 +78,7 @@ class AttributesNormalized
     /**
      * Get strength
      *
-     * @return integer 
+     * @return integer
      */
     public function getStrength()
     {
@@ -101,7 +101,7 @@ class AttributesNormalized
     /**
      * Get reactions
      *
-     * @return integer 
+     * @return integer
      */
     public function getReactions()
     {
@@ -124,7 +124,7 @@ class AttributesNormalized
     /**
      * Get height
      *
-     * @return integer 
+     * @return integer
      */
     public function getHeight()
     {
@@ -147,7 +147,7 @@ class AttributesNormalized
     /**
      * Get accuracy
      *
-     * @return integer 
+     * @return integer
      */
     public function getAccuracy()
     {
@@ -170,7 +170,7 @@ class AttributesNormalized
     /**
      * Get injuries
      *
-     * @return integer 
+     * @return integer
      */
     public function getInjuries()
     {
@@ -193,7 +193,7 @@ class AttributesNormalized
     /**
      * Get age
      *
-     * @return integer 
+     * @return integer
      */
     public function getAge()
     {
@@ -216,7 +216,7 @@ class AttributesNormalized
     /**
      * Get player
      *
-     * @return \Decision\DecisionBundle\Entity\Player 
+     * @return \Decision\DecisionBundle\Entity\Player
      */
     public function getPlayer()
     {

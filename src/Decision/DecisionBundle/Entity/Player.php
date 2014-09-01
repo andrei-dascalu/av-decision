@@ -165,7 +165,7 @@ class Player
         return $this->playerTeamId;
     }
 
-    public function getEQWScore() 
+    public function getEQWScore()
     {
         $an = $this->getAttributesNormalized();
         return $an->getStrength() +
