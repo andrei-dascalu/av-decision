@@ -51,7 +51,6 @@ class AttributesRegular
      */
     private $player;
 
-
     /**
      * Get id
      *
@@ -223,7 +222,11 @@ class AttributesRegular
         return $this->player;
     }
 
-
+    /**
+     * Get player
+     *
+     * @return \Decision\DecisionBundle\Entity\AttributesNormalized
+    */
     public function normalize()
     {
         $strength = $this->NormalizeStrength($this->getStrength());

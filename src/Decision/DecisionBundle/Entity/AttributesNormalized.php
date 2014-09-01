@@ -51,7 +51,6 @@ class AttributesNormalized
      */
     private $player;
 
-
     /**
      * Get id
      *
