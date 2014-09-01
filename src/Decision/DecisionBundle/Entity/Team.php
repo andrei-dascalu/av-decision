@@ -163,7 +163,7 @@ class Team
         if(count($arrTeamPlayers) == 5) {
             $arrWeights = array();
 
-            foreach($arrTeamPlayers as $player) {
+            foreach ($arrTeamPlayers as $player) {
                 $arrWeights[] = $player->getEQWScore();
             }
 

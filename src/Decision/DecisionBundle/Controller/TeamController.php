@@ -30,7 +30,7 @@ class TeamController extends Controller
         $form->handleRequest($request);
 
         if ($request->getMethod() == 'POST') {
-            if($form->isValid()) {
+            if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($team);
                 $em->flush();
@@ -80,7 +80,7 @@ class TeamController extends Controller
 
         $arrTeamPlayers = $team->getTeamPlayers();
         $obj = array();
-        if($arrTeamPlayers->count() < 5) {
+        if ($arrTeamPlayers->count() < 5) {
             try {
                 $team->addTeamPlayer($player);
                 $player->setPlayerTeamId($team);
@@ -186,7 +186,7 @@ class TeamController extends Controller
 
         $score = $team->getScore($idealTeamScore);
 
-        if($score < 0) {
+        if ($score < 0) {
             $score = "Team incomplete, add players";
         }
 

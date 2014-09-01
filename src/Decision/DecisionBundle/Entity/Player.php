@@ -167,6 +167,11 @@ class Player
 
     public function getEQWScore() {
         $an = $this->getAttributesNormalized();
-        return $an->getStrength()+$an->getReactions()+$an->getHeight()+$an->getAccuracy()+$an->getInjuries()+$an->getAge();
+        return $an->getStrength() +
+            $an->getReactions() +
+            $an->getHeight() +
+            $an->getAccuracy() +
+            $an->getInjuries() +
+            $an->getAge();
     }
 }

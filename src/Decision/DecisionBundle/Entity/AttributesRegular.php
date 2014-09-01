@@ -253,7 +253,7 @@ class AttributesRegular
         $current = $step;
 
         $i=0;
-        while($strength != $arrStrength[$i]) {
+        while ($strength != $arrStrength[$i]) {
             $current += $step;
             $i++;
         }
@@ -269,7 +269,7 @@ class AttributesRegular
         $current = $step;
 
         $i=0;
-        while($accuracy != $arrAccuracy[$i]) {
+        while ($accuracy != $arrAccuracy[$i]) {
             $current += $step;
             $i++;
         }
@@ -286,7 +286,7 @@ class AttributesRegular
         $current = $step;
 
         $i=0;
-        while($reactions != $arrReactions[$i]) {
+        while ($reactions != $arrReactions[$i]) {
             $current += $step;
             $i++;
         }
