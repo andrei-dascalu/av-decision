@@ -22,7 +22,8 @@ use Symfony\Component\HttpFoundation\Request;
 class PlayerController extends Controller
 {
 
-    public function addSuccessAction(Request $request, $player_id) {
+    public function addSuccessAction(Request $request, $player_id) 
+    {
         $player = $this->getDoctrine()
                     ->getRepository('DecisionBundle:Player')
                     ->find($player_id);
@@ -30,7 +31,7 @@ class PlayerController extends Controller
             'arrPlayers' => array($player),
             'is_assisted' => true
         );
-        return $this->render('DecisionBundle:Player:player.success.html.twig',$arrParams);
+        return $this->render('DecisionBundle:Player:player.success.html.twig', $arrParams);
     }
 
     public function addAttribAction(Request $request, $player_id) 
@@ -38,12 +39,12 @@ class PlayerController extends Controller
         $attributesRegular = new AttributesRegular();
         $data = new DataHolder();
         $form = $this->createFormBuilder($attributesRegular)
-            ->add('strength', 'choice',array('label'=>'Player Strength','choices'=>$data->getStrength()))
-            ->add('reactions', 'choice',array('label'=>'Player Reactions','choices'=>$data->getReactions()))
-            ->add('height', 'text',array('label'=>'Player Height'))
-            ->add('age', 'text',array('label'=>'Player Age'))
-            ->add('accuracy', 'choice',array('label'=>'Player Accuracy','choices'=>$data->getAccuracy()))
-            ->add('injuries', 'text',array('label'=>'Player Injuries'))
+            ->add('strength', 'choice', array('label'=>'Player Strength', 'choices'=>$data->getStrength()))
+            ->add('reactions', 'choice', array('label'=>'Player Reactions', 'choices'=>$data->getReactions()))
+            ->add('height', 'text', array('label'=>'Player Height'))
+            ->add('age', 'text', array('label'=>'Player Age'))
+            ->add('accuracy', 'choice', array('label'=>'Player Accuracy', 'choices'=>$data->getAccuracy()))
+            ->add('injuries', 'text', array('label'=>'Player Injuries'))
             ->add('save', 'submit')
             ->getForm();
 
@@ -67,7 +68,7 @@ class PlayerController extends Controller
                 $em->persist($attributesRegular);
                 $em->persist($attributesNormalized);
                 $em->flush();
-                return $this->redirect($this->generateUrl('player_add_success',array('player_id'=>$player->getId())));
+                return $this->redirect($this->generateUrl('player_add_success', array('player_id'=>$player->getId())));
             }
         }
 
@@ -87,9 +88,9 @@ class PlayerController extends Controller
         $player = new Player();
         $data = new DataHolder();
         $form = $this->createFormBuilder($player)
-        ->add('playerName', 'text',array('label'=>'Player Name'))
-        ->add('playerPosition', 'choice',array('label'=>'Player Position','choices'=>$data->getPositions()))
-        ->add('save', 'submit',array('label'=>'Next'))
+        ->add('playerName', 'text', array('label'=>'Player Name'))
+        ->add('playerPosition', 'choice', array('label'=>'Player Position', 'choices'=>$data->getPositions()))
+        ->add('save', 'submit', array('label'=>'Next'))
         ->getForm();
 
         $form->handleRequest($request);
@@ -101,7 +102,7 @@ class PlayerController extends Controller
                 $em->persist($player);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('player_add_attrib',array('player_id'=>$player->getId())));
+                return $this->redirect($this->generateUrl('player_add_attrib', array('player_id'=>$player->getId())));
             }
         }
 
@@ -219,14 +220,14 @@ class PlayerController extends Controller
         $arrPlayersSliced = array();
 
         for ($i=0;$i<$nbPages;$i++) {
-            $arrPlayersSliced[$i] = array_slice($arrPlayers,$i*9,9);
+            $arrPlayersSliced[$i] = array_slice($arrPlayers, $i*9, 9);
         }
 
         $arrParams = array(
             'nbPages' => $nbPages,
             'arrPlayers' => $arrPlayersSliced,
             'nPlayers' => count($arrPlayers),
-            'ajax_remove_player' => $this->generateUrl('player_remove',array(   'player_id'=>'PPPP'))
+            'ajax_remove_player' => $this->generateUrl('player_remove',array('player_id'=>'PPPP'))
         );
 
         return $this->render('DecisionBundle:Player:player.list.all.twig', $arrParams);
