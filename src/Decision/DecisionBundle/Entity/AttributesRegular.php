@@ -224,7 +224,8 @@ class AttributesRegular
     }
 
 
-    public function Normalize() {
+    public function normalize() 
+    {
         $strength = $this->NormalizeStrength($this->getStrength());
         $age = $this->NormalizeAge($this->getAge());
         $injuries = $this->NormalizeInjuries($this->getInjuries());
@@ -244,7 +245,8 @@ class AttributesRegular
         return $attributesNormalized;
     }
 
-    private function NormalizeStrength($strength) {
+    private function normalizeStrength($strength) 
+    {
         $dataHolder = new DataHolder();
         $arrStrength = array_keys($dataHolder->getStrength());
         $items = count($arrStrength);
@@ -261,7 +263,8 @@ class AttributesRegular
         return $current;
     }
 
-    private function NormalizeAccuracy($accuracy) {
+    private function normalizeAccuracy($accuracy) 
+    {
         $dataHolder = new DataHolder();
         $arrAccuracy = array_keys($dataHolder->getAccuracy());
         $items = count($arrAccuracy);
@@ -277,7 +280,8 @@ class AttributesRegular
         return $current;
     }
 
-    private function NormalizeReactions($reactions) {
+    private function normalizeReactions($reactions) 
+    {
         $dataHolder = new DataHolder();
         $arrReactions = array_keys($dataHolder->getReactions());
         $items = count($arrReactions);
@@ -294,7 +298,8 @@ class AttributesRegular
         return $current;
     }
 
-    private function NormalizeInjuries($injuries) {
+    private function normalizeInjuries($injuries)
+    {
         $min=0;
         $max = 12;
         
@@ -306,7 +311,8 @@ class AttributesRegular
         return (100 - $current);
     }
 
-    private function NormalizeAge($age) {
+    private function normalizeAge($age) 
+    {
         $min=17;
         $max = 35;
 
@@ -318,7 +324,8 @@ class AttributesRegular
         return (100 - $current);
     }
 
-    private function NormalizeHeight($height) {
+    private function normalizeHeight($height) 
+    {
         $min=15;
         $max = 25;
         $height = round($height/10);

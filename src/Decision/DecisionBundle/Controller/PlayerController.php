@@ -33,7 +33,8 @@ class PlayerController extends Controller
         return $this->render('DecisionBundle:Player:player.success.html.twig',$arrParams);
     }
 
-    public function addAttribAction(Request $request, $player_id) {
+    public function addAttribAction(Request $request, $player_id) 
+    {
         $attributesRegular = new AttributesRegular();
         $data = new DataHolder();
         $form = $this->createFormBuilder($attributesRegular)
@@ -55,7 +56,7 @@ class PlayerController extends Controller
         $outcome = 'Set attributes for player: ';
 
         if ($request->getMethod() == 'POST') {
-            if($form->isValid()) {
+            if ($form->isValid()) {
                 $attributesNormalized = $attributesRegular->Normalize();
                 $attributesNormalized->setPlayer($player);
                 $player->setAttributesNormalized($attributesNormalized);
@@ -81,7 +82,8 @@ class PlayerController extends Controller
         return $this->render('DecisionBundle:Player:player.form.html.twig', $arrParams);
     }
 
-    public function addPlayerAction(Request $request) {
+    public function addPlayerAction(Request $request) 
+    {
         $player = new Player();
         $data = new DataHolder();
         $form = $this->createFormBuilder($player)
@@ -111,7 +113,8 @@ class PlayerController extends Controller
         return $this->render('DecisionBundle:Player:player.form.html.twig', $arrParams);
     }
 
-    public function deletePlayerAction(Request $request, $player_id) {
+    public function deletePlayerAction(Request $request, $player_id) 
+    {
         $player = $this->getDoctrine()
                     ->getRepository('DecisionBundle:Player')
                     ->find($player_id);
@@ -131,10 +134,10 @@ class PlayerController extends Controller
                 $obj['from_team'] = 1;
                 $obj['players'] = $team->getTeamPlayers()->count();
             }
-            if(!is_null($an)) {
+            if (!is_null($an)) {
                 $em->remove($an);
             }
-            if(!is_null($ar)) {
+            if (!is_null($ar)) {
                 $em->remove($ar);
             }
             $em->remove($player);
@@ -157,8 +160,12 @@ class PlayerController extends Controller
         return $this->render('DecisionBundle:Team:team.json.html.twig', $arrParams); 
     }
 
-    public function randomGenerateAction(Request $request, $counter) {
-        if($counter <1 || $counter > 30 || !is_numeric($counter)) return false;
+    public function randomGenerateAction(Request $request, $counter) 
+    {
+        if ($counter <1 || $counter > 30 || !is_numeric($counter)) {
+            return false;
+        }
+
         $data = new DataHolder();
         $arrPositions = array_keys($data->getPositions());
         $arrStrength = array_keys($data->getStrength());
@@ -201,7 +208,8 @@ class PlayerController extends Controller
         return $this->render('DecisionBundle:Default:index.html.twig');
     }
 
-    public function listAllAction(Request $request) {
+    public function listAllAction(Request $request) 
+    {
         $arrPlayers = $this->getDoctrine()
                 ->getRepository('DecisionBundle:Player')
                 ->findAll();
@@ -210,7 +218,7 @@ class PlayerController extends Controller
 
         $arrPlayersSliced = array();
 
-        for($i=0;$i<$nbPages;$i++) {
+        for ($i=0;$i<$nbPages;$i++) {
             $arrPlayersSliced[$i] = array_slice($arrPlayers,$i*9,9);
         }
 

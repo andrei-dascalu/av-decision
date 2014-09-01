@@ -157,10 +157,11 @@ class Team
     /**
      * Calculate percentage score based on given ideal
      */
-    public function getScore($idealScore) {
+    public function getScore($idealScore) 
+    {
         $arrTeamPlayers = $this->getTeamPlayers();
 
-        if(count($arrTeamPlayers) == 5) {
+        if (count($arrTeamPlayers) == 5) {
             $arrWeights = array();
 
             foreach ($arrTeamPlayers as $player) {
