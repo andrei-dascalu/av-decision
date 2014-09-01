@@ -303,8 +303,13 @@ class AttributesRegular
         $min=0;
         $max = 12;
 
-        if($injuries == $min) return 100;
-        if($injuries ==$max) return 0;
+        if ($injuries == $min) {
+            return 100;
+        }
+
+        if ($injuries ==$max) {
+            return 0;
+        }
 
         $current = round(($injuries/$max) * 100);
 
@@ -319,6 +324,7 @@ class AttributesRegular
         if ($age == $min) {
             return 100;
         }
+
         if ($age ==$max) {
             return 0;
         }

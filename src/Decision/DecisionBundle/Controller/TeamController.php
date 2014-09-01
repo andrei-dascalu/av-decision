@@ -23,9 +23,9 @@ class TeamController extends Controller
 
         $team = new Team();
         $form = $this->createFormBuilder($team)
-        ->add('teamName', 'text',array('label'=>'Team Name'))
-        ->add('teamAssisted', 'checkbox',array('label'=>'Is Assisted','required'=>false))
-        ->add('save', 'submit',array('label'=>'Next'))
+        ->add('teamName', 'text', array('label'=>'Team Name'))
+        ->add('teamAssisted', 'checkbox', array('label'=>'Is Assisted','required'=>false))
+        ->add('save', 'submit', array('label'=>'Next'))
         ->getForm();
 
         $form->handleRequest($request);
@@ -36,7 +36,7 @@ class TeamController extends Controller
                 $em->persist($team);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('team_add_players',array('team_id'=>$team->getId())));
+                return $this->redirect($this->generateUrl('team_add_players', array('team_id'=>$team->getId())));
             }
         }
 
@@ -67,13 +67,13 @@ class TeamController extends Controller
             'arrPlayers' => $arrPlayers,
             'ajax_url' => $this->generateUrl(
                 'team_add_player',
-                array('team_id'=>$team->getId(),'player_id'=>'PPPP')
+                array('team_id'=>$team->getId(), 'player_id'=>'PPPP')
             ),
             'ajax_remove_url' => $this->generateUrl(
                 'team_remove_player',
-                array('team_id'=>$team->getId(),'player_id'=>'PPPP')
+                array('team_id'=>$team->getId(), 'player_id'=>'PPPP')
             ),
-            'ajax_remove_player' => $this->generateUrl('player_remove',array(   'player_id'=>'PPPP'))
+            'ajax_remove_player' => $this->generateUrl('player_remove', array(   'player_id'=>'PPPP'))
         );
         return $this->render('DecisionBundle:Team:team.players.html.twig', $arrParams);
     }
@@ -148,7 +148,7 @@ class TeamController extends Controller
             'add_players' => false,
             'remove_players' => true,
             'arrPlayers' => $arrTeamPlayers,
-            'ajax_url' => $this->generateUrl('team_remove_player',array('team_id'=>$team->getId(),'player_id'=>'PPPP'))
+            'ajax_url' => $this->generateUrl('team_remove_player', array('team_id'=>$team->getId(), 'player_id'=>'PPPP'))
         );
         return $this->render('DecisionBundle:Team:team.players.html.twig', $arrParams);
     }

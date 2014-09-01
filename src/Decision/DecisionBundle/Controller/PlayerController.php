@@ -134,7 +134,7 @@ class PlayerController extends Controller
             $team = $player->getPlayerTeamId();
 
             $em = $this->getDoctrine()->getManager();
-            if(!is_null($team)) {
+            if (!is_null($team)) {
                 $team->removeTeamPlayer($player);
                 $em->persist($team);
                 $obj['from_team'] = 1;
@@ -232,7 +232,7 @@ class PlayerController extends Controller
             'nbPages' => $nbPages,
             'arrPlayers' => $arrPlayersSliced,
             'nPlayers' => count($arrPlayers),
-            'ajax_remove_player' => $this->generateUrl('player_remove',array('player_id'=>'PPPP'))
+            'ajax_remove_player' => $this->generateUrl('player_remove', array('player_id'=>'PPPP'))
         );
 
         return $this->render('DecisionBundle:Player:player.list.all.twig', $arrParams);
