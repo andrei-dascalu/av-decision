@@ -20,7 +20,8 @@
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
         "squizlabs/php_codesniffer": "1.*",
-        "phpunit/php-timer": "~1.0"
+        "phpunit/php-timer": "~1.0",
+        "sebastian/phpcpd": "*"
     },
     "scripts": {
         "post-install-cmd": [
