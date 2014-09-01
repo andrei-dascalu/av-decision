@@ -148,8 +148,8 @@ class TeamController extends Controller
             'add_players' => false,
             'remove_players' => true,
             'arrPlayers' => $arrTeamPlayers,
-            'ajax_url' => $this->generateUrl('
-                team_remove_player',
+            'ajax_url' => $this->generateUrl(
+                'team_remove_player',
                 array(
                     'team_id'=>$team->getId(),
                     'player_id'=>'PPPP'
