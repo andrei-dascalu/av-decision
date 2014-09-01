@@ -11,7 +11,11 @@ use Decision\DecisionBundle\Entity\Team;
 use Decision\DecisionBundle\Entity\AttributesNormalized;
 use Decision\DecisionBundle\Entity\AttributesRegular;
 
-
+/**
+ * This is the class that loads and manages your bundle configuration
+ *
+ * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
+ */
 class TeamController extends Controller
 {
     public function addTeamAction(Request $request) {

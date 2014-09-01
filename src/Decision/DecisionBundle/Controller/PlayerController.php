@@ -14,8 +14,11 @@ use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\HttpFoundation\Request;
 
-
-
+/**
+ * This is the class that loads and manages your bundle configuration
+ *
+ * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
+ */
 class PlayerController extends Controller
 {
 
