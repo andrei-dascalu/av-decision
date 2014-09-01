@@ -2,14 +2,14 @@
 
 namespace Decision\DecisionBundle\Entity;
 
-class DataHolder 
+class DataHolder
 {
     private $positions;
     private $strength;
     private $accuracy;
     private $reactions;
 
-    public function __construct() 
+    public function __construct()
     {
         $this->positions = array(
             'SG' => 'Shooting Guard',
@@ -45,22 +45,22 @@ class DataHolder
 
     }
 
-    public function getPositions() 
+    public function getPositions()
     {
         return $this->positions;
     }
 
-    public function getAccuracy() 
+    public function getAccuracy()
     {
         return $this->accuracy;
     }
 
-    public function getStrength() 
+    public function getStrength()
     {
         return $this->strength;
     }
 
-    public function getReactions() 
+    public function getReactions()
     {
         return $this->reactions;
     }

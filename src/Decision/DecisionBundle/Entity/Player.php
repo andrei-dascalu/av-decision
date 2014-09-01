@@ -125,8 +125,9 @@ class Player
      * @param \Decision\DecisionBundle\Entity\AttributesNormalized $attributesNormalized
      * @return Player
      */
-    public function setAttributesNormalized(\Decision\DecisionBundle\Entity\AttributesNormalized $attributesNormalized = null)
-    {
+    public function setAttributesNormalized(
+        \Decision\DecisionBundle\Entity\AttributesNormalized $attributesNormalized = null
+    ) {
         $this->attributesNormalized = $attributesNormalized;
 
         return $this;
