@@ -177,19 +177,19 @@ class PlayerController extends Controller
         $arrStrength = array_keys($data->getStrength());
         $arrAccuracy = array_keys($data->getAccuracy());
         $arrReactions = array_keys($data->getReactions());
-        for ($i=0;$i<$counter;$i++) {
+        for ($i=0; $i<$counter; $i++) {
             $player = new Player();
             $player->setPlayerName("Player ".$i);
-            $player->setPlayerPosition($arrPositions[rand(0,3)]);
+            $player->setPlayerPosition($arrPositions[rand(0, 3)]);
 
             $ar = new AttributesRegular();
-            $ar->setStrength($arrStrength[rand(0,4)]);
-            $ar->setAccuracy($arrAccuracy[rand(0,4)]);
-            $ar->setReactions($arrReactions[rand(0,5)]);
+            $ar->setStrength($arrStrength[rand(0, 4)]);
+            $ar->setAccuracy($arrAccuracy[rand(0, 4)]);
+            $ar->setReactions($arrReactions[rand(0, 5)]);
 
-            $ar->setHeight(rand(150,250));
-            $ar->setAge(rand(17,35));
-            $ar->setInjuries(rand(0,12));
+            $ar->setHeight(rand(150, 250));
+            $ar->setAge(rand(17, 35));
+            $ar->setInjuries(rand(0, 12));
 
             $an = $ar->Normalize();
 
@@ -224,7 +224,7 @@ class PlayerController extends Controller
 
         $arrPlayersSliced = array();
 
-        for ($i=0;$i<$nbPages;$i++) {
+        for ($i=0; $i<$nbPages; $i++) {
             $arrPlayersSliced[$i] = array_slice($arrPlayers, $i*9, 9);
         }
 

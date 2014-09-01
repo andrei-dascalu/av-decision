@@ -148,7 +148,13 @@ class TeamController extends Controller
             'add_players' => false,
             'remove_players' => true,
             'arrPlayers' => $arrTeamPlayers,
-            'ajax_url' => $this->generateUrl('team_remove_player', array('team_id'=>$team->getId(), 'player_id'=>'PPPP'))
+            'ajax_url' => $this->generateUrl('
+                team_remove_player',
+                array(
+                    'team_id'=>$team->getId(),
+                    'player_id'=>'PPPP'
+                )
+            )
         );
         return $this->render('DecisionBundle:Team:team.players.html.twig', $arrParams);
     }
@@ -164,19 +170,20 @@ class TeamController extends Controller
 
         $arrTeamPlayers = $team->getTeamPlayers();
         $obj = array();
-            try {
-                $team->removeTeamPlayer($player);
-                $player->setPlayerTeamId(null);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($team);
-                $em->persist($player);
-                $em->flush();
-                $obj['error'] = 0;
-                $obj['message'] = 'Player has been removed!';
-            } catch (Exception $ex) {
-                $obj['error'] = 1;
-                $obj['message'] = $ex->getMessage();
-            }
+
+        try {
+            $team->removeTeamPlayer($player);
+            $player->setPlayerTeamId(null);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($team);
+            $em->persist($player);
+            $em->flush();
+            $obj['error'] = 0;
+            $obj['message'] = 'Player has been removed!';
+        } catch (Exception $ex) {
+            $obj['error'] = 1;
+            $obj['message'] = $ex->getMessage();
+        }
 
         $arrTeamPlayers = $team->getTeamPlayers();
         $obj['players'] = $arrTeamPlayers->count();
@@ -228,7 +235,7 @@ class TeamController extends Controller
         }
 
         sort($arrWeights);
-        $arrBest = array_slice($arrWeights,count($arrWeights)-5,5);
+        $arrBest = array_slice($arrWeights, count($arrWeights)-5, 5);
         return array_sum($arrBest);
     }
 }
