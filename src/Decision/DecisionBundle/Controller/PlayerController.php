@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
 class PlayerController extends Controller
 {
 
-    public function addSuccessAction(Request $request, $player_id) 
+    public function addSuccessAction(Request $request, $player_id)
     {
         $player = $this->getDoctrine()
                     ->getRepository('DecisionBundle:Player')
@@ -34,7 +34,7 @@ class PlayerController extends Controller
         return $this->render('DecisionBundle:Player:player.success.html.twig', $arrParams);
     }
 
-    public function addAttribAction(Request $request, $player_id) 
+    public function addAttribAction(Request $request, $player_id)
     {
         $attributesRegular = new AttributesRegular();
         $data = new DataHolder();
@@ -68,7 +68,12 @@ class PlayerController extends Controller
                 $em->persist($attributesRegular);
                 $em->persist($attributesNormalized);
                 $em->flush();
-                return $this->redirect($this->generateUrl('player_add_success', array('player_id'=>$player->getId())));
+                return $this->redirect(
+                    $this->generateUrl(
+                        'player_add_success',
+                        array('player_id'=>$player->getId())
+                    )
+                );
             }
         }
 
@@ -83,7 +88,7 @@ class PlayerController extends Controller
         return $this->render('DecisionBundle:Player:player.form.html.twig', $arrParams);
     }
 
-    public function addPlayerAction(Request $request) 
+    public function addPlayerAction(Request $request)
     {
         $player = new Player();
         $data = new DataHolder();
@@ -114,7 +119,7 @@ class PlayerController extends Controller
         return $this->render('DecisionBundle:Player:player.form.html.twig', $arrParams);
     }
 
-    public function deletePlayerAction(Request $request, $player_id) 
+    public function deletePlayerAction(Request $request, $player_id)
     {
         $player = $this->getDoctrine()
                     ->getRepository('DecisionBundle:Player')
@@ -150,7 +155,7 @@ class PlayerController extends Controller
         } catch (Exception $ex) {
              $obj['message'] = 'Error';
              $obj['error'] = 1;
-        } 
+        }
 
         $strJSON = json_encode($obj);
 
@@ -158,10 +163,10 @@ class PlayerController extends Controller
             'json' => $strJSON
         );
 
-        return $this->render('DecisionBundle:Team:team.json.html.twig', $arrParams); 
+        return $this->render('DecisionBundle:Team:team.json.html.twig', $arrParams);
     }
 
-    public function randomGenerateAction(Request $request, $counter) 
+    public function randomGenerateAction(Request $request, $counter)
     {
         if ($counter <1 || $counter > 30 || !is_numeric($counter)) {
             return false;
@@ -209,7 +214,7 @@ class PlayerController extends Controller
         return $this->render('DecisionBundle:Default:index.html.twig');
     }
 
-    public function listAllAction(Request $request) 
+    public function listAllAction(Request $request)
     {
         $arrPlayers = $this->getDoctrine()
                 ->getRepository('DecisionBundle:Player')

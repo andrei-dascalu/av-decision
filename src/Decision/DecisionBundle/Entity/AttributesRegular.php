@@ -55,7 +55,7 @@ class AttributesRegular
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -78,7 +78,7 @@ class AttributesRegular
     /**
      * Get strength
      *
-     * @return string 
+     * @return string
      */
     public function getStrength()
     {
@@ -101,7 +101,7 @@ class AttributesRegular
     /**
      * Get reactions
      *
-     * @return string 
+     * @return string
      */
     public function getReactions()
     {
@@ -124,7 +124,7 @@ class AttributesRegular
     /**
      * Get height
      *
-     * @return integer 
+     * @return integer
      */
     public function getHeight()
     {
@@ -147,7 +147,7 @@ class AttributesRegular
     /**
      * Get accuracy
      *
-     * @return string 
+     * @return string
      */
     public function getAccuracy()
     {
@@ -170,7 +170,7 @@ class AttributesRegular
     /**
      * Get injuries
      *
-     * @return integer 
+     * @return integer
      */
     public function getInjuries()
     {
@@ -193,7 +193,7 @@ class AttributesRegular
     /**
      * Get age
      *
-     * @return integer 
+     * @return integer
      */
     public function getAge()
     {
@@ -216,7 +216,7 @@ class AttributesRegular
     /**
      * Get player
      *
-     * @return \Decision\DecisionBundle\Entity\Player 
+     * @return \Decision\DecisionBundle\Entity\Player
      */
     public function getPlayer()
     {
@@ -224,7 +224,7 @@ class AttributesRegular
     }
 
 
-    public function normalize() 
+    public function normalize()
     {
         $strength = $this->NormalizeStrength($this->getStrength());
         $age = $this->NormalizeAge($this->getAge());
@@ -245,7 +245,7 @@ class AttributesRegular
         return $attributesNormalized;
     }
 
-    private function normalizeStrength($strength) 
+    private function normalizeStrength($strength)
     {
         $dataHolder = new DataHolder();
         $arrStrength = array_keys($dataHolder->getStrength());
@@ -263,7 +263,7 @@ class AttributesRegular
         return $current;
     }
 
-    private function normalizeAccuracy($accuracy) 
+    private function normalizeAccuracy($accuracy)
     {
         $dataHolder = new DataHolder();
         $arrAccuracy = array_keys($dataHolder->getAccuracy());
@@ -280,7 +280,7 @@ class AttributesRegular
         return $current;
     }
 
-    private function normalizeReactions($reactions) 
+    private function normalizeReactions($reactions)
     {
         $dataHolder = new DataHolder();
         $arrReactions = array_keys($dataHolder->getReactions());
@@ -302,29 +302,33 @@ class AttributesRegular
     {
         $min=0;
         $max = 12;
-        
+
         if($injuries == $min) return 100;
         if($injuries ==$max) return 0;
-        
+
         $current = round(($injuries/$max) * 100);
 
         return (100 - $current);
     }
 
-    private function normalizeAge($age) 
+    private function normalizeAge($age)
     {
         $min=17;
         $max = 35;
 
-        if($age == $min) return 100;
-        if($age ==$max) return 0;
-        
+        if ($age == $min) {
+            return 100;
+        }
+        if ($age ==$max) {
+            return 0;
+        }
+
         $current = round((($age-$min)/($max-$min)) * 100);
 
         return (100 - $current);
     }
 
-    private function normalizeHeight($height) 
+    private function normalizeHeight($height)
     {
         $min=15;
         $max = 25;

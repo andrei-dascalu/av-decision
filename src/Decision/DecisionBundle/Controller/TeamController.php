@@ -18,7 +18,7 @@ use Decision\DecisionBundle\Entity\AttributesRegular;
  */
 class TeamController extends Controller
 {
-    public function addTeamAction(Request $request) 
+    public function addTeamAction(Request $request)
     {
 
         $team = new Team();
@@ -47,7 +47,7 @@ class TeamController extends Controller
         return $this->render('DecisionBundle:Team:team.form.html.twig', $arrParams);
     }
 
-    public function addPlayersAction(Request $request, $team_id) 
+    public function addPlayersAction(Request $request, $team_id)
     {
         $team = $this->getDoctrine()
                     ->getRepository('DecisionBundle:Team')
@@ -65,14 +65,20 @@ class TeamController extends Controller
             'remove_players' => false,
             'arrSelectedPlayers' => $arrTeamPlayers,
             'arrPlayers' => $arrPlayers,
-            'ajax_url' => $this->generateUrl('team_add_player',array('team_id'=>$team->getId(),'player_id'=>'PPPP')),
-            'ajax_remove_url' => $this->generateUrl('team_remove_player',array('team_id'=>$team->getId(),'player_id'=>'PPPP')),
+            'ajax_url' => $this->generateUrl(
+                'team_add_player',
+                array('team_id'=>$team->getId(),'player_id'=>'PPPP')
+            ),
+            'ajax_remove_url' => $this->generateUrl(
+                'team_remove_player',
+                array('team_id'=>$team->getId(),'player_id'=>'PPPP')
+            ),
             'ajax_remove_player' => $this->generateUrl('player_remove',array(   'player_id'=>'PPPP'))
         );
         return $this->render('DecisionBundle:Team:team.players.html.twig', $arrParams);
     }
 
-    public function addPlayerAction(Request $request, $team_id, $player_id) 
+    public function addPlayerAction(Request $request, $team_id, $player_id)
     {
         $team = $this->getDoctrine()
                     ->getRepository('DecisionBundle:Team')
@@ -113,7 +119,7 @@ class TeamController extends Controller
         return $this->render('DecisionBundle:Team:team.json.html.twig', $arrParams);
     }
 
-    public function listTeamsAction(Request $request) 
+    public function listTeamsAction(Request $request)
     {
         $arrTeams = $this->getDoctrine()
                     ->getRepository('DecisionBundle:Team')->findAll();
@@ -125,7 +131,7 @@ class TeamController extends Controller
         return $this->render('DecisionBundle:Team:team.list.html.twig', $arrParams);
     }
 
-    public function listPlayersAction(Request $request, $team_id) 
+    public function listPlayersAction(Request $request, $team_id)
     {
         $team = $this->getDoctrine()
                     ->getRepository('DecisionBundle:Team')
@@ -147,7 +153,7 @@ class TeamController extends Controller
         return $this->render('DecisionBundle:Team:team.players.html.twig', $arrParams);
     }
 
-    public function removePlayerAction(Request $request, $team_id, $player_id) 
+    public function removePlayerAction(Request $request, $team_id, $player_id)
     {
         $team = $this->getDoctrine()
                     ->getRepository('DecisionBundle:Team')
@@ -183,7 +189,7 @@ class TeamController extends Controller
         return $this->render('DecisionBundle:Team:team.json.html.twig', $arrParams);
     }
 
-    public function scoreAction(Request $request, $team_id) 
+    public function scoreAction(Request $request, $team_id)
     {
         $team = $this->getDoctrine()
                     ->getRepository('DecisionBundle:Team')
@@ -207,7 +213,7 @@ class TeamController extends Controller
         return $this->render('DecisionBundle:Team:team.score.html.twig', $arrParams);
     }
 
-    private function calculateIdealTeamScore() 
+    private function calculateIdealTeamScore()
     {
         //strategia ponderilor egale (EQW)
         //http://grpupc1.epfl.ch/~luis/teaching/dt/docs/The_adaptive_decision_maker.pdf
